@@ -1,16 +1,18 @@
-## Hi there 👋
+# These Guys Know
 
-<!--
-**theseguysknow/theseguysknow** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Independent reviews and original testing across AI, technology, privacy and online business.
 
-Here are some ideas to get you started:
+We test products ourselves, publish the prompts, settings, costs and failures, and keep the evidence visible.
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## What we publish
+
+- Independent product tests and comparisons
+- Original AI model research
+- Testing prompts, scoring methods and reference assets
+- Practical technology and privacy guides
+
+## Our work
+
+Visit [These Guys Know](https://theseguysknow.io/) or read how our testing works on the [TGK Tests & Research](https://theseguysknow.io/how-we-know/) page.
+
+Public datasets and supporting files from selected TGK investigations will be added here as separate repositories.
