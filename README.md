@@ -16,3 +16,7 @@ We test products ourselves, publish the prompts, settings, costs and failures, a
 Visit [These Guys Know](https://theseguysknow.io/) or read how our testing works on the [TGK Tests & Research](https://theseguysknow.io/how-we-know/) page.
 
 Public datasets and supporting files from selected TGK investigations will be added here as separate repositories.
+
+## Latest research
+
+- [We tested five AI video generators on dialogue, action and advertising](https://theseguysknow.io/best-ai-video-generators-2026-tested/): exact prompts, generation times, costs, first results and documented failures.
