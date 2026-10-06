@@ -1,0 +1,8 @@
+{
+  "name": "theseguysknow",
+  "private": true,
+  "description": "Tooling for These Guys Know (not a published package).",
+  "devDependencies": {
+    "@playwright/cli": "^0.1.22"
+  }
+}
