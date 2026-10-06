@@ -4,6 +4,16 @@
 
 TGK-specific instructions, the `tgk-working-rules` skill, and explicit instructions from the user always take priority over any generic design skill or reference below. If a generic skill disagrees with them, follow the TGK rules.
 
+## This workspace
+
+This repository is the permanent Claude Code workspace for TGK. It holds the persistent tooling layer: skills in `.claude/skills/`, this file, and the session-start hook. The TGK Ghost theme is intentionally not committed here; it is supplied per task as the latest numbered source ZIP.
+
+When a TGK source/theme ZIP is provided:
+
+- Extract it under `work/` (for example `work/<package-name>/`). `work/` and `*.zip` are gitignored; never commit theme source, build output or ZIPs to this public repo.
+- Treat that extracted source as the frontend being designed, built and tested. Use its own `package.json`, dependencies and build/packaging scripts, run from its own directory.
+- The skills, hook and rules in this repo stay the tooling layer around it. Do not add theme files or theme dependencies to the workspace root.
+
 ## Frontend design toolkit
 
 Project skills live in `.claude/skills/`. Each has one job; they work together in sequence rather than all steering the design at once.
@@ -38,9 +48,12 @@ This skill is written for an image-first workflow and says to generate design im
 
 ### `playwright-cli`
 
-`@playwright/cli` is a project dev dependency (`package.json`). Run it as `npx playwright-cli ...`. Use it to open the site or a local preview, read the rendered page snapshot, check desktop and mobile viewports (`resize`), take screenshots when useful, exercise layout and interactions, catch obvious visual regressions, and check console errors (`console`).
+`playwright-cli` is a global command, not a dependency of this repo or of the theme. Use it to open the site or a local preview, read the rendered page snapshot, check desktop and mobile viewports (`resize`), take screenshots when useful, exercise layout and interactions, catch obvious visual regressions, and check console errors (`console`).
 
-In Claude Code on the web, `.claude/hooks/session-start.sh` runs `npm install` and points Playwright at the container's Chromium (`PLAYWRIGHT_MCP_BROWSER=chromium`, `PLAYWRIGHT_MCP_EXECUTABLE_PATH=/opt/pw-browsers/chromium`). The web sandbox's network policy may block external sites, including theseguysknow.io; serve the page locally (for example `python3 -m http.server`) and open the `http://127.0.0.1` URL. Output goes to `.playwright-cli/`, which is gitignored; never commit it.
+In Claude Code on the web, `.claude/hooks/session-start.sh` installs a pinned `@playwright/cli` globally (`npm install -g`, outside the repo) and points it at the container's Chromium (`PLAYWRIGHT_MCP_BROWSER=chromium`, `PLAYWRIGHT_MCP_EXECUTABLE_PATH=/opt/pw-browsers/chromium`). Elsewhere, install it with `npm install -g @playwright/cli@0.1.22`. Never add it to the theme's `package.json`.
+
+- Run `playwright-cli` from the workspace root, not from inside the extracted theme: it writes snapshots and screenshots to `.playwright-cli/` in the current directory (gitignored here), which must not end up in a theme build or ZIP.
+- The web sandbox's network policy may block external sites, including theseguysknow.io. Serve the built page locally (the theme's own dev server, or a static server such as `python3 -m http.server`) and open the `http://127.0.0.1` URL. Ghost `.hbs` templates only render inside a running Ghost instance; a static server can only show static output.
 
 ### awesome-design-md reference library
 
